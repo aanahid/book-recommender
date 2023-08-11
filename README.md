@@ -1,1 +1,1 @@
-# my-book-recommender
+# book-recommender
