@@ -11,7 +11,7 @@ class BookRecommendationApp:
         self.root = root
         self.root.geometry("630x530")
         self.root.title("Alondra's Book Recommender")
-        self.root.configure(background="#F6E8EA")
+        self.root.configure(background="#F6E8EA") 
 
         # styling
         self.style = ttk.Style()
