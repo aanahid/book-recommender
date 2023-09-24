@@ -11,26 +11,26 @@ SMILEY: str = "\U0000263A"
 # helper function definitions
 def greet() -> None:
     """Greets player and gets user's name."""
-    # welcome message
+    
     print("Welcome to my book recommender!")
-    # get user name
+    
     global user
     user = input("Before we start, what is your name? ")
     print(f"Nice to meet you, {user}. Let's get started! {SMILEY}")
 
 def asking() -> tuple[str, str]: 
     """Asks the user about the type of book they are interested in."""
-    # get genre
+    
     genre = input(f"What genre are you interested in reading, {user}? ")
-    # get keywords
     keywords = input("Enter keyword(s) that interest you (comma-separated): ")
-    # format keywords if there is more than one
+
+    # format keywords for api request if there is more than one
     keywords = format_keywords(keywords)
     return genre, keywords
 
 def format_keywords(input: str) -> str:
     """Formats keywords for url search."""
-    # check if there is more than one keyword
+    
     if "," in input: 
         words = input.split(",");
         formatted = "+".join(words)
@@ -40,12 +40,11 @@ def format_keywords(input: str) -> str:
 
 def create_df(genre: str, keywords: str) -> pd: 
     """Creates pandas data frame of books from url API call."""
-    # create list of books
+    
     books = []
 
-    # construct the API URL with the genre and keywords parameters
+    # construct the API URL with the genre and keywords parameters and make API request
     url = f"https://openlibrary.org/search.json?subject={genre}+{keywords}"
-    # make API request
     response = requests.get(url)
     
     # check that response was successful
@@ -75,7 +74,7 @@ def create_df(genre: str, keywords: str) -> pd:
 
 def recommendation(books_df: pd) -> None: 
     """Prints info of random book from data frame"""
-    # Pick a random book from the DataFrame
+    
     random_book = books_df.sample(n=1)
 
     # Access the random book information
@@ -92,14 +91,12 @@ def recommendation(books_df: pd) -> None:
     print("Subjects:", subjects)
     print("Rating out of 5.0:", rating)    
 
-# main function definition
+# main function
 def main() -> None: 
     """Entrypoint of program."""
-    # greets user and asks for name
     greet()
-    # gets genre and keyword(s)
     genre, keywords = asking()
-    # creates data frame of books that match
+
     books_df = create_df(genre, keywords)
     
     # checks if data frame is empty
@@ -109,7 +106,6 @@ def main() -> None:
     
     # gets and prints recommendation
     recommendation(books_df)
-    # goodbye message
     print(f"Hope you enjoy your recommendation, {user}. Have a nice day! {SMILEY}")
 
 if __name__ == "__main__":

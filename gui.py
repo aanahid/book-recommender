@@ -54,14 +54,17 @@ class BookRecommendationApp:
         self.label_rating.grid(row = 9, column = 0, columnspan = 2, padx=20)
 
     def get_rec(self):
+        """Gets input for genre and keywords, creates and prints recommendation."""
         topic = self.entry_genre.get()
         keywords = format_keywords(self.entry_keywords.get())
 
         if topic and keywords:
             books_df = self.create_rec(topic, keywords)
+
             if books_df.empty: 
                 self.clear_rec()
                 self.label_result.config(text="No such books exists, consider writing one :)")
+
             else: 
                 recommendation = books_df.sample(n=1)
                 self.label_result.config(text="Here is your book recommendation: ")
@@ -71,10 +74,12 @@ class BookRecommendationApp:
                 self.label_subjects.config(text=f"Subjects: {recommendation['subjects'].values[0]}", wraplength = 575)
                 rating = str(recommendation['rating'].values[0])
                 self.label_rating.config(text=f"Rating: {rating} / 5.0")
+
         else:
             self.label_result.config(text="Please enter a genre and some keywords for your recommendation.")
 
     def create_rec(self, genre, keywords):
+        """Makes API request and creates pandas dataframe from results."""
         books = []
         # construct the API URL with the genre and keywords parameters
         url = f"https://openlibrary.org/search.json?subject={genre}+{keywords}"
@@ -86,9 +91,8 @@ class BookRecommendationApp:
             # extract book information from the response
             book_info = response.json()
 
-            # loop through results and add books to list
             for result in book_info['docs']:
-                # exlcude low rated books and checks if number of pages is included
+                # exlcude low rated books and checks if number of pages is included with book info
                 if 'ratings_average' in result and result['ratings_average'] >= 2 and 'number_of_pages_median' in result:
                     subjects = ', '.join(result.get('subject', []))
                     book = {
@@ -105,8 +109,8 @@ class BookRecommendationApp:
         # creates and returns a pandas data frame from the list of books
         return pd.DataFrame(books)
     
-    # clears entry lines and recommendation in labels
     def clear_all(self):
+        """Clears entry lines and recommendation in labels."""
         self.entry_genre.delete(0, tk.END)
         self.entry_keywords.delete(0, tk.END)
         self.label_result.config(text="")
@@ -116,8 +120,8 @@ class BookRecommendationApp:
         self.label_subjects.config(text="")
         self.label_rating.config(text="")
 
-    # clears recommendation in labels
     def clear_rec(self):
+        """Clears only recommendation in labels."""
         self.label_result.config(text="")
         self.label_title.config(text="")
         self.label_author.config(text="")
