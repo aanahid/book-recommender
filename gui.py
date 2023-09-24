@@ -38,7 +38,7 @@ class BookRecommendationApp:
         self.root.grid_columnconfigure(0, weight=1)
         self.root.grid_columnconfigure(1, weight=1)
 
-        # place everything in grid
+        # place labels and buttons in grid
         self.label_welcome.grid(row = 0, column = 0, columnspan = 2, padx=10, pady=10)
         self.label_prompt.grid(row = 1, column = 0, sticky="nsew", padx=10, pady=10)
         self.entry_genre.grid(row = 1, column = 1)
