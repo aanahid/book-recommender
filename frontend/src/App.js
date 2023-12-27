@@ -2,11 +2,14 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
+  // state hooks, manages values of genre, keywords, rec, and error
   const [genre, setGenre] = useState('');
   const [keywords, setKeywords] = useState('');
   const [recommendation, setRecommendation] = useState({});
   const [error, setError] = useState('');
 
+  // event handling function
+  // when 'get rec' button is clicked
   const handleRecommendation = async () => {
     try {
       const response = await axios.post('http://localhost:5000/recommend', {
@@ -21,6 +24,7 @@ function App() {
     }
   };
 
+  // UI 
   return (
     <div>
       <h1>Book Recommender</h1>
