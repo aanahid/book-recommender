@@ -1,9 +1,11 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import requests
 import pandas as pd
 from books import format_keywords
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:3000"])
 
 def create_rec(genre, keywords):
         """Makes API request and creates pandas dataframe from results."""
@@ -56,7 +58,9 @@ def recommend():
             return jsonify({'error': 'No such books exist, consider writing one :)'}), 404
 
         recommendation = books_df.sample(n=1).to_dict(orient='records')[0]
-        return jsonify(recommendation)
+        response = jsonify(recommendation)
+        response.headers.add('Access-Control-Allow-Origin', '*')  # Allow any origin
+        return response
 
     return jsonify({'error': 'Invalid input'}), 400
 
