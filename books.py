@@ -55,7 +55,7 @@ def create_df(genre: str, keywords: str) -> pd:
         # loop through results and add books to list
         for result in book_info['docs']:
             # exlcude low rated books
-            if 'ratings_average' in result and result['ratings_average'] >= min_rating:
+            if 'ratings_average' in result and result['ratings_average'] >= min_rating and 'number_of_pages_median' in result:
                 subjects = ', '.join(result.get('subject', []))
                 book = {
                     'title': result['title'],
