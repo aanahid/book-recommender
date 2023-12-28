@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 function App() {
@@ -27,9 +27,9 @@ function App() {
   // UI 
   return (
     <div>
-      <h1>Book Recommender</h1>
+      <h1>My Book Recommender</h1>
       <div>
-        <label>Genre:</label>
+        <label>Enter a genre you are interested in reading: </label>
         <input
           type="text"
           value={genre}
@@ -37,7 +37,7 @@ function App() {
         />
       </div>
       <div>
-        <label>Keywords:</label>
+        <label>Enter keyword(s) that interest you (comma-separated): </label>
         <input
           type="text"
           value={keywords}
@@ -50,12 +50,12 @@ function App() {
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {recommendation.title && (
         <div>
-          <h2>Recommendation:</h2>
-          <p>Title: {recommendation.title}</p>
-          <p>Author: {recommendation.author}</p>
-          <p>Pages: {recommendation.pages}</p>
-          <p>Subjects: {recommendation.subjects}</p>
-          <p>Rating: {recommendation.rating}</p>
+          <p className="title">{recommendation.title}</p>
+          <p>{recommendation.author}</p>
+          <p>Page Count: {recommendation.pages}</p>
+          <p>Subjects: </p>
+          <p>{recommendation.subjects}</p>
+          <p>Rating: {recommendation.rating} / 5</p>
         </div>
       )}
     </div>
