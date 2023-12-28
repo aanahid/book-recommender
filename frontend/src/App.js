@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import './App.css';
 
 function App() {
   // state hooks, manages values of genre, keywords, rec, and error
@@ -12,6 +13,12 @@ function App() {
   // when 'get rec' button is clicked
   const handleRecommendation = async () => {
     try {
+      // check if empty
+      if (!genre || !keywords) {
+        setError('Please enter both a genre and keywords before getting a recommendation.');
+        return;
+      }
+
       const response = await axios.post('http://localhost:5000/recommend', {
         genre: genre,
         keywords: keywords,
@@ -19,7 +26,7 @@ function App() {
       setRecommendation(response.data);
       setError('');
     } catch (error) {
-      setError('Error fetching recommendation');
+      setError('No such book exists. Consider writing one :)');
       setRecommendation({});
     }
   };
@@ -28,28 +35,35 @@ function App() {
   return (
     <div>
       <h1>My Book Recommender</h1>
-      <div>
-        <label>Enter a genre you are interested in reading: </label>
-        <input
-          type="text"
-          value={genre}
-          onChange={(e) => setGenre(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Enter keyword(s) that interest you (comma-separated): </label>
-        <input
-          type="text"
-          value={keywords}
-          onChange={(e) => setKeywords(e.target.value)}
-        />
-      </div>
-      <div>
-        <button onClick={handleRecommendation}>Get Recommendation</button>
+      <div className="line"></div>
+      <div className="input-container">
+        <div>
+          <label>Enter a genre you are interested in reading: </label>
+        </div>
+        <div>
+          <input
+            type="text"
+            value={genre}
+            onChange={(e) => setGenre(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>Enter keyword(s) that interest you (comma-separated): </label>
+        </div>
+        <div>
+          <input
+            type="text"
+            value={keywords}
+            onChange={(e) => setKeywords(e.target.value)}
+          />
+        </div>
+        <div>
+          <button onClick={handleRecommendation}>Get Recommendation</button>
+        </div>
       </div>
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {recommendation.title && (
-        <div>
+        <div className="container">
           <p className="title">{recommendation.title}</p>
           <p>{recommendation.author}</p>
           <p>Page Count: {recommendation.pages}</p>
