@@ -10,14 +10,22 @@ Most recently, the latest version of the project has been developed into a web a
 
 The latest version introduces a web-based user interface created using React. Users can input their preferences through the web interface, and the book recommendation is displayed on the screen. 
 
+To run this version locally: 
+1. Run the backend using this command: python app.py
+2. Navigate to the src folder: cd frontend/src
+3. Start development server: npm start
+
+
 ## Version 2: GUI Application
 
 This version allows users to provide input and get their recommendations from a GUI application made using Tkinter.
 
-To run this version use this command: python gui.py
+To run this version use this command: 
+python gui.py
 
 ## Version 1: CLI
 
 In this versions users interact with the program by entering commands in the terminal. This is also where their recommendation is printed. 
 
-To run this version use this command: python books.py
+To run this version use this command: 
+python books.py
