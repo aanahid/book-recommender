@@ -10,8 +10,8 @@ body {
 }
 
 label {
-  margin-top: 3px;
-  margin-bottom: 3px;
+  margin-top: 1em;
+  margin-bottom: 2em;
 }
 
 h1 {
@@ -38,12 +38,22 @@ input {
   border-radius: 10px;
   outline: none;
   text-align: center;
-  margin-bottom: 3px;
+  margin-top: .5em;
+  margin-bottom: 1em;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+button {
+  background-color: #BFCC94;
+  font-family: 'Poppins', sans-serif;
+  color:#344966;
+  border-radius: 30px;
+  font-size: medium;
+  margin-bottom: 1em;
 }
 
 .line {
@@ -56,8 +66,8 @@ code {
 .container {
   text-align: center;
   display: block;
-  max-width: 78vmin; 
-  margin: 0 auto;
+  max-width: 90vmin; 
+  margin: auto;
 }
 
 .input-container {
@@ -65,7 +75,7 @@ code {
   display: inline-block;
   background-color: #EEC9DC;
   min-width: 48vw;
-  padding: 1rem;
+  padding-top: 1rem;
   border-radius: 30px;
   border: 2px solid #344966;
 }

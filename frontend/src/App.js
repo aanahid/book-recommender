@@ -15,7 +15,8 @@ function App() {
     try {
       // check if empty
       if (!genre || !keywords) {
-        setError('Please enter both a genre and keywords before getting a recommendation.');
+        setError('Please enter both a genre and keyword(s) before getting a recommendation.');
+        setRecommendation({});
         return;
       }
 
@@ -29,6 +30,13 @@ function App() {
       setError('No such book exists. Consider writing one :)');
       setRecommendation({});
     }
+  };
+
+  const handleClear = () => {
+    setGenre('');
+    setKeywords('');
+    setRecommendation({});
+    setError('');
   };
 
   // UI 
@@ -60,8 +68,11 @@ function App() {
         <div>
           <button onClick={handleRecommendation}>Get Recommendation</button>
         </div>
+        <div>
+          <button onClick={handleClear}>Clear</button>
+        </div>
       </div>
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      <div className="container"> {error && <p>{error}</p>} </div>
       {recommendation.title && (
         <div className="container">
           <p className="title">{recommendation.title}</p>
