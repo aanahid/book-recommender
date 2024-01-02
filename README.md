@@ -1,4 +1,4 @@
-# Book Recommender
+# My Book Recommender
 
 This project provides users with a book recommendation. The program accepts two inputs from the user: a genre they are interested in and other topics they want to read. Given these inputs, this project utilizes the OpenLibrary Search API and conducts a search using the inputs. The results of the search are all added to a list, and a pandas DataFrame is created from that list of books. The book recommendation is a randomly chosen book stored within the DataFrame.
 
