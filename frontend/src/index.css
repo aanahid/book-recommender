@@ -16,10 +16,10 @@ label {
 
 h1 {
   margin: 0;
-  padding: 3vmin;
+  padding: 20px;
   font-family: 'Vidaloka', sans-serif;
   background-color: #EEC9DC;
-  font-size: calc(18px + 2vmin)
+  font-size: 36px;
 }
 
 p {
@@ -60,7 +60,7 @@ button {
   height: 1.5px;
   background-color: #344966; 
   width: 100%;
-  margin-bottom: 1em;
+  margin-bottom: 20px;
 }
 
 .container {
