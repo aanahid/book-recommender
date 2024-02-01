@@ -8,7 +8,7 @@ Most recently, the project's latest version has been developed into a web applic
 
 ## Version 3: Web (React App)
 
-The latest version introduces a web-based user interface created using React. Users can input their preferences through the web interface and view their book recommendation. 
+The latest version introduces a web-based user interface created using React and Flask (Python). Users can input their preferences through the web interface and view their book recommendation. 
 
 To run this version locally: 
 1. Run the backend using this command: python app.py
